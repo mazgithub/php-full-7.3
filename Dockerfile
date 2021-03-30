@@ -18,7 +18,7 @@ libxslt1.1 libxslt1-dev zlibc  apt-transport-https \
 	&& docker-php-ext-install sockets \
 	&& docker-php-ext-install bcmath \
 	&& docker-php-ext-install soap \
-  && docker-php-ext-install xml intl xsl pdo_mysql soap
+  && docker-php-ext-install xml intl xsl pdo_mysql soap \
 	&& docker-php-ext-configure bcmath --enable-bcmath \
 	&& docker-php-ext-configure zip --with-libzip \
 	&& docker-php-ext-configure bz2 \
