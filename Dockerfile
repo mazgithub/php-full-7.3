@@ -27,7 +27,8 @@ libxslt1.1 libxslt1-dev zlibc  apt-transport-https \
 #RUN apt-get install -y libssh2-1-dev libssh2-1 \
 #&& pecl install ssh2 \
 #&& docker-php-ext-enable ssh2 
-RUN apt-get install -y libssh2-1 libssh2-1-dev RUN pecl install ssh2-1.2 docker-php-ext-enable ssh2
+RUN apt-get install -y libssh2-1 libssh2-1-dev
+RUN pecl install ssh2-1.2 docker-php-ext-enable ssh2
 
 # Install composer
 
