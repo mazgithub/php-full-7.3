@@ -24,11 +24,20 @@ libxslt1.1 libxslt1-dev zlibc  apt-transport-https \
 	&& docker-php-ext-configure bz2 \
 	&& docker-php-ext-configure soap --enable-soap
 
+# Install php-ssh2
 #RUN apt-get install -y libssh2-1-dev libssh2-1 \
 #&& pecl install ssh2 \
 #&& docker-php-ext-enable ssh2 
-RUN apt-get install -y libssh2-1 libssh2-1-dev
-RUN pecl install ssh2-1.2 docker-php-ext-enable ssh2
+#RUN apt-get install -y libssh2-1 libssh2-1-dev
+#RUN pecl install ssh2-1.2 docker-php-ext-enable ssh2
+RUN apt-get install -y libssh2-1-dev \
+&& CURRENT_PATH=$(pwd) \
+&& cd /tmp && git clone https://git.php.net/repository/pecl/networking/ssh2.git && cd /tmp/ssh2 \
+&& phpize && ./configure && make && make install > /dev/null 2>&1\
+&& echo "extension=ssh2.so" > /usr/local/etc/php/conf.d/ext-ssh2.ini \
+&& rm -rf /tmp/ssh2 \
+&& cd ${CURRENT_PATH};
+
 
 # Install composer
 
